@@ -7,8 +7,9 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const graphRoutes=require("./routes/graphRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const dashboardAnalyticsRoutes=require("./routes/dashboardAnalyticsRoutes");
-
-
+const skillRoutes = require("./routes/skillRoutes");
+const documentRoutes = require("./routes/documentRoutes");
+const departmentRoutes = require("./routes/departmentRoutes");
 const app = express();
 
 app.use(cors());
@@ -27,4 +28,10 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/graph",graphRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/dashboard",dashboardAnalyticsRoutes);
+app.use("/api/skills", skillRoutes);
+app.use("/api/documents", documentRoutes);
+app.use("/api/departments", departmentRoutes);
+
+
+
 module.exports = app;
