@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import DashboardChart from "../components/DashboardChart";
 import {
   Users,
   FolderKanban,
@@ -250,7 +251,17 @@ function Dashboard() {
         </div>
 
       </div>
+<div className="bg-white rounded-xl shadow-lg p-6 mt-8">
 
+    <h2 className="text-2xl font-bold mb-6">
+
+        Enterprise Statistics
+
+    </h2>
+
+    <DashboardChart stats={stats} />
+
+</div>
       {/* Knowledge Graph */}
 
       <div className="bg-white rounded-2xl shadow-lg p-6">

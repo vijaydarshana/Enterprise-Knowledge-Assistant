@@ -70,9 +70,77 @@ async function getEmployee(req, res) {
         });
     }
 }
+async function createEmployee(req, res) {
 
+    try {
+
+        const employee = await employeeModel.createEmployee(req.body);
+
+        res.status(201).json({
+            success: true,
+            data: employee
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+}
+async function updateEmployee(req, res) {
+
+    try {
+
+        const employee = await employeeModel.updateEmployee(
+            req.params.id,
+            req.body
+        );
+
+        res.json({
+            success: true,
+            data: employee
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+}
+async function deleteEmployee(req, res) {
+
+    try {
+
+        await employeeModel.deleteEmployee(req.params.id);
+
+        res.json({
+            success: true,
+            message: "Employee deleted successfully"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+}
 module.exports = {
     getEmployees,
     getEmployeeSkills,
-    getEmployee
+    getEmployee,
+    createEmployee,
+    updateEmployee,
+    deleteEmployee
 };
