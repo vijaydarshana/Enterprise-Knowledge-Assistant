@@ -47,15 +47,19 @@ function Employees() {
 
   async function performUpdate(employee) {
     try {
-      await api.put(`/employees/${employee.id}`, {
+      const res = await api.put(`/employees/${employee.id}`, {
         name: employee.name,
         email: employee.email,
         designation: employee.designation,
       });
 
+      const updated = res.data?.data ?? { id: employee.id, ...employee };
+
+      // Replace the updated employee in the list without reloading
+      setEmployees((prev) => prev.map((emp) => (emp.id === updated.id ? updated : emp)));
+
       setShowForm(false);
       setSelectedEmployee(null);
-      fetchEmployees();
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +68,11 @@ function Employees() {
   async function performDelete(id) {
     try {
       await api.delete(`/employees/${id}`);
-      window.location.reload();
+
+      // Remove the deleted employee from the list without reloading
+      setEmployees((prev) => prev.filter((emp) => emp.id !== id));
+      setShowForm(false);
+      setSelectedEmployee(null);
     } catch (error) {
       console.error(error);
     }
