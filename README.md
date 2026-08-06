@@ -173,4 +173,18 @@ I have added placeholder instructions; add your exported PNGs or JPGs to the `fr
 ## Demo Link
 Demo Live :https://enterprise-knowledge-assistant-1-i3g4.onrender.com/
 
+## Deployment (Render) notes
+
+- Frontend (Static site): When deploying the frontend as a static site on Render you must rewrite all non-file requests to `index.html` so client-side routes work on refresh. Add this rewrite in the Render dashboard (Site → Settings → Rewrites) with a rule like:
+
+  - Source: `/*`
+  - Destination: `/index.html`
+  - Status: `200`
+
+- A `_redirects` file has been added to `frontend/public/_redirects` containing `/* /index.html 200`. Vite copies files from `public` into the `dist` build output; if Render doesn't use `_redirects` automatically, add the rewrite rule in the dashboard.
+
+- Backend (Web Service): If you serve the built frontend from the Express backend (deploy backend as a Web Service), ensure the frontend is built into `frontend/dist` during the build step and that the server start command runs after build. The backend includes a guarded SPA catch-all that serves `index.html` for non-API routes when `frontend/dist` exists.
+
+- Environment: Set `VITE_API_URL` for the static frontend to point to your backend (for example `https://<your-backend>.onrender.com/api`). This ensures API calls like `api.get('/employees')` target the correct backend path.
+
 
