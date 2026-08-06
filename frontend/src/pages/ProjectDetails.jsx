@@ -15,7 +15,7 @@ function ProjectDetails() {
 
             const res = await api.get(`/projects/${id}`);
 
-            setProject(res.data.data);
+            setProject(res.data?.data ?? res.data ?? null);
 
         } catch (error) {
 
@@ -61,7 +61,7 @@ function ProjectDetails() {
                             Team Members
                         </h2>
 
-                        {project.employees.map(emp => (
+                        {(project.employees ?? []).map(emp => (
 
                             <div
                                 key={emp}
@@ -82,7 +82,7 @@ function ProjectDetails() {
 
                         <div className="flex flex-wrap gap-3">
 
-                            {project.skills.map(skill => (
+                            {(project.skills ?? []).map(skill => (
 
                                 <span
                                     key={skill}
@@ -103,7 +103,7 @@ function ProjectDetails() {
                             Documents
                         </h2>
 
-                        {project.documents.map(doc => (
+                        {(project.documents ?? []).map(doc => (
 
                             <div
                                 key={doc}

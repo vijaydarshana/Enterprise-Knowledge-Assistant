@@ -9,7 +9,7 @@ function Documents() {
     async function fetchDocuments() {
     try {
       const res = await api.get("/documents");
-      setDocuments(res.data.data);
+      setDocuments(res.data?.data ?? res.data ?? []);
     } catch (error) {
       console.error(error);
     } finally {

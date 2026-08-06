@@ -11,7 +11,7 @@ function ProjectRecommendation() {
      async function fetchProjects() {
     try {
       const res = await api.get("/projects");
-      setProjects(res.data.data);
+      setProjects(res.data?.data ?? res.data ?? []);
     } catch (err) {
       console.error(err);
     }
@@ -85,7 +85,7 @@ function ProjectRecommendation() {
 
           <div className="grid md:grid-cols-2 gap-6">
 
-            {recommendations.map((employee,index)=>(
+            {(recommendations ?? []).map((employee,index)=>(
 
               <div
                 key={index}
@@ -104,7 +104,7 @@ function ProjectRecommendation() {
 
                 <div className="flex flex-wrap gap-2 mt-4">
 
-                  {employee.skills.map(skill=>(
+                  {(employee.skills ?? []).map(skill=>(
 
                     <span
                       key={skill}

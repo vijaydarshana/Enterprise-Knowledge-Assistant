@@ -12,7 +12,7 @@ function Projects() {
     async function fetchProjects() {
     try {
       const res = await api.get("/projects");
-      setProjects(res.data.data);
+      setProjects(res.data?.data ?? res.data ?? []);
     } catch (error) {
       console.error(error);
     } finally {

@@ -9,7 +9,7 @@ function Skills() {
       async function fetchSkills() {
     try {
       const res = await api.get("/skills");
-      setSkills(res.data.data);
+      setSkills(res.data?.data ?? res.data ?? []);
     } catch (error) {
       console.error(error);
     } finally {

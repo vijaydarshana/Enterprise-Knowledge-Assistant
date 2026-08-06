@@ -98,7 +98,7 @@ function GraphExplorer() {
 
       const res = await api.get("/graph");
 
-      let graphNodes = res.data.nodes.map((node) => ({
+      let graphNodes = (res.data?.nodes ?? []).map((node) => ({
 
         id: node.id,
 
@@ -129,7 +129,7 @@ function GraphExplorer() {
 
       }));
 
-      let graphEdges = res.data.edges.map((edge) => ({
+      let graphEdges = (res.data?.edges ?? []).map((edge) => ({
 
         id: edge.id,
 
