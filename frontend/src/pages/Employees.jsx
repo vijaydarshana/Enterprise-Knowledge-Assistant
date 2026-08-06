@@ -33,9 +33,13 @@ function Employees() {
 
   async function performCreate(employee) {
     try {
-      await api.post("/employees", employee);
+      const res = await api.post("/employees", employee);
+      const created = res.data?.data ?? res.data;
+
+      // Add the created employee to the current list without reloading
+      setEmployees((prev) => [created, ...prev]);
       setShowForm(false);
-      window.location.reload();
+      setSelectedEmployee(null);
     } catch (error) {
       console.error(error);
     }
