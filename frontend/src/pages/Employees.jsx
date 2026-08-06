@@ -23,7 +23,8 @@ function Employees() {
   async function fetchEmployees() {
     try {
       const res = await api.get("/employees");
-      setEmployees(res.data.data);
+      // Defensive: API may return { data: [...] } or [...] or other shapes.
+      setEmployees(res.data?.data ?? res.data ?? []);
     } catch (error) {
       console.error(error);
     } finally {
