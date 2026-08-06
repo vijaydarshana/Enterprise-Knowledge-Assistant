@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/employees", employeeRoutes);
+app.use("/api/employees", employeeRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/graph",graphRoutes);
