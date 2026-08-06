@@ -15,10 +15,10 @@ const COLORS = [
 
 function DashboardChart({ stats }) {
   const data = [
-    { name: "Employees", value: stats.employees },
-    { name: "Projects", value: stats.projects },
-    { name: "Skills", value: stats.skills },
-    { name: "Documents", value: stats.documents },
+    { name: "Employees", value: stats?.employees ?? 0 },
+    { name: "Projects", value: stats?.projects ?? 0 },
+    { name: "Skills", value: stats?.skills ?? 0 },
+    { name: "Documents", value: stats?.documents ?? 0 },
   ];
 
   return (

@@ -15,7 +15,7 @@ function EmployeeDetails() {
 
             const res = await api.get(`/employees/${id}`);
 
-            setEmployee(res.data.data);
+            setEmployee(res.data?.data ?? res.data ?? null);
 
         } catch (err) {
 
@@ -94,7 +94,7 @@ function EmployeeDetails() {
 
                     <div className="flex flex-wrap gap-3 mt-4">
 
-                        {employee.skills.map(skill => (
+                        {(employee.skills ?? []).map(skill => (
 
                             <span
                                 key={skill}
@@ -119,7 +119,7 @@ function EmployeeDetails() {
 
                     <div className="mt-4">
 
-                        {employee.projects.map(project => (
+                        {(employee.projects ?? []).map(project => (
 
                             <div
                                 key={project}

@@ -32,9 +32,9 @@ function Dashboard() {
         api.get("/projects"),
       ]);
 
-      setStats(statsRes.data.data);
-      setTopEmployees(employeeRes.data.data);
-      setProjects(projectRes.data.data);
+      setStats(statsRes.data?.data ?? statsRes.data ?? { employees:0, projects:0, skills:0, documents:0 });
+      setTopEmployees(employeeRes.data?.data ?? employeeRes.data ?? []);
+      setProjects(projectRes.data?.data ?? projectRes.data ?? []);
     } catch (err) {
       console.error(err);
     } finally {
