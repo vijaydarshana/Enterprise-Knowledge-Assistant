@@ -21,7 +21,14 @@ app.get("/", (req, res) => {
                 message: "Enterprise Knowledge Assistant API"
         });
 });
-
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: "healthy",
+    message: "Enterprise Knowledge Assistant API is running",
+    timestamp: new Date().toISOString()
+  });
+});
 app.use("/api/employees", employeeRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/dashboard", dashboardRoutes);
